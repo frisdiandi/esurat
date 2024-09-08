@@ -1,11 +1,11 @@
 @extends('admin.layouts.app', [
-'activePage' => 'bidang',
+'activePage' => 'rab',
 ])
 @section('content')
 <div class="page-breadcrumb">
    <div class="row">
       <div class="col-5 align-self-center">
-         <h4 class="page-title">Data Bidang</h4>
+         <h4 class="page-title">Data rab</h4>
          <div class="d-flex align-items-center">
          </div>
       </div>
@@ -16,8 +16,8 @@
                   <li class="breadcrumb-item">
                      Data Master
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/bidang">Data Bidang</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/bidang/add">Tambah Data Bidang</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/rab">Data rab</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/rab/add">Tambah Data rab</a></li>
                </ol>
             </nav>
          </div>
@@ -30,9 +30,9 @@
          <div class="card">
             <div class="card-body">
                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="card-title m-0"><i class="mdi mdi-library-plus"></i> Tambah Data Bidang</h4>
+                  <h4 class="card-title m-0"><i class="mdi mdi-library-plus"></i> Tambah Data rab</h4>
                   <div>
-                     <a href="/admin/bidang" class="btn btn-primary btn-sm">
+                     <a href="/admin/rab" class="btn btn-primary btn-sm">
                      <i class="fa fa-arrow-left"></i> Back
                      </a>
                   </div>
@@ -50,13 +50,13 @@
                   <span>{{ session('success')}}</span>
                </div>
                @endif
-               <form action="/admin/bidang/create" method="POST" enctype="multipart/form-data">
+               <form action="/admin/rab/create" method="POST" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <div class="row">
                      <div class="col-md-12">
                         <div class="form-group">
-                           <label>Nama bidang</label>
-                           <input type="text" name="nama" autofocus class="form-control" placeholder="Masukkan Nama bidang .....">     
+                           <label>Nama rab</label>
+                           <input type="text" name="nama" autofocus class="form-control" placeholder="Masukkan Nama rab .....">     
                         </div>
                      </div>
                   </div>

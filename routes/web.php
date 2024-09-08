@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\BidangController;
+use App\Http\Controllers\Admin\RuanganController;
+use App\Http\Controllers\Admin\RabController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,7 +71,7 @@ Route::prefix('admin/bidang')->middleware('cekLevel:1 2')->controller(BidangCont
     Route::post('/import', 'import');
 });
 
-//Data Raungan
+//Data Ruangan
 Route::prefix('admin/ruangan')->middleware('cekLevel:1 2')->controller(RuanganController::class)->group(function () {
     Route::get('/','read');
     Route::get('/add', 'add');
@@ -78,3 +81,15 @@ Route::prefix('admin/ruangan')->middleware('cekLevel:1 2')->controller(RuanganCo
     Route::get('/delete/{id}', 'delete');
     
 });
+
+// Data RAB
+Route::prefix('admin/rab')->middleware('cekLevel:1 2')->controller(RabController::class)->group(function () {
+    Route::get('/','read');
+    Route::get('/add', 'add');
+    Route::post('/create', 'create');
+    Route::get('/edit/{id}', 'edit');
+    Route::post('/update/{id}', 'update');
+    Route::get('/delete/{id}', 'delete');
+    Route::post('/import', 'import');
+
+}); 

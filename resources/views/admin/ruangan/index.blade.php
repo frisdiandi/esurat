@@ -16,7 +16,7 @@
                   <li class="breadcrumb-item">
                      Data Master
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/ruangan">List Data ruangan</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/ruangan">List Data Ruangan</a></li>
                </ol>
             </nav>
          </div>
@@ -29,7 +29,7 @@
          <div class="card">
             <div class="card-body">
                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="card-title m-0"><i class="fa fa-list"></i> List Data ruangan</h4>
+                  <h4 class="card-title m-0"><i class="fa fa-list"></i> List Data Ruangan</h4>
                   <div>
                      <a href="/admin/ruangan/add" class="btn btn-primary btn-sm">
                      <i class="fa fa-plus"></i> Tambah Data
@@ -57,7 +57,10 @@
                      <thead class="bg-primary" style="color: white;">
                         <tr>
                            <th width="3%" class="text-center">No</th>
-                           <th width="15%" class="text-center">Nama ruangan</th>
+                           <th width="15%" class="text-center">Id</th>
+                           <th width="15%" class="text-center">Nama Ruangan</th>
+                           <th width="15%" class="text-center">Nama Bidang</th>
+                           <th width="15%" class="text-center">Nama Pegawai</th>
                            <th width="15%" class="text-center">Action</th>
                         </tr>
                      </thead>

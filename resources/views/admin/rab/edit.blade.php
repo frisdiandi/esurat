@@ -1,11 +1,11 @@
 @extends('admin.layouts.app', [
-'activePage' => 'bidang',
+'activePage' => 'rab',
 ])
 @section('content')
 <div class="page-breadcrumb">
    <div class="row">
       <div class="col-5 align-self-center">
-         <h4 class="page-title">Data bidang</h4>
+         <h4 class="page-title">Data rab</h4>
          <div class="d-flex align-items-center">
          </div>
       </div>
@@ -16,8 +16,8 @@
                   <li class="breadcrumb-item">
                      Data Master
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/bidang">Data bidang</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/bidang/edit/{{$bidang->id}}">Edit Data bidang</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/rab">Data rab</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/rab/edit/{{$rab->id}}">Edit Data rab</a></li>
                </ol>
             </nav>
          </div>
@@ -30,9 +30,9 @@
          <div class="card">
             <div class="card-body">
                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="card-title m-0"><i class="fa fa-edit"></i> Edit Data bidang</h4>
+                  <h4 class="card-title m-0"><i class="fa fa-edit"></i> Edit Data rab</h4>
                   <div>
-                     <a href="/admin/bidang" class="btn btn-primary btn-sm">
+                     <a href="/admin/rab" class="btn btn-primary btn-sm">
                      <i class="fa fa-arrow-left"></i> Back
                      </a>
                   </div>
@@ -50,24 +50,24 @@
                   <span>{{ session('success')}}</span>
                </div>
                @endif
-               <form action="/admin/bidang/update/{{$bidang->id}}" method="POST" enctype="multipart/form-data">
+               <form action="/admin/rab/update/{{$rab->id}}" method="POST" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label>NIP bidang</label>
-                           <input type="number" name="nip" autofocus class="form-control" placeholder="Masukkan NIP bidang ....." value="{{$bidang->nip}}">     
+                           <label>NIP rab</label>
+                           <input type="number" name="nip" autofocus class="form-control" placeholder="Masukkan NIP rab ....." value="{{$rab->nip}}">     
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label>Nama bidang</label>
-                           <input type="text" name="nama" autofocus class="form-control" placeholder="Masukkan Nama bidang ....." value="{{$bidang->nama}}">     
+                           <label>Nama rab</label>
+                           <input type="text" name="nama" autofocus class="form-control" placeholder="Masukkan Nama rab ....." value="{{$rab->nama}}">     
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label>Jabatan bidang</label>
+                           <label>Jabatan rab</label>
                            <select class="form-control select2" name="id_jabatan">
                               <option value="{{$jabatanSelect->id}}">{{$jabatanSelect->nama}}</option>
                               @foreach($jabatan as $data)
@@ -79,7 +79,7 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label>Foto</label>
-                           @if($bidang->foto == "")
+                           @if($rab->foto == "")
                            <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                  <span class="input-group-text">Upload</span>
@@ -103,7 +103,7 @@
                                  </div>
                               </div>
                               <div class="col-md-3">
-                                 <a href="{{url('public/profil')}}/{{$bidang->foto}}" target="_blank" class="btn btn-primary btn-block"><i class="fa fa-image"></i> Lihat Foto</a>
+                                 <a href="{{url('public/profil')}}/{{$rab->foto}}" target="_blank" class="btn btn-primary btn-block"><i class="fa fa-image"></i> Lihat Foto</a>
                               </div>
                            </div>
                            @endif

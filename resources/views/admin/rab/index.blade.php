@@ -1,11 +1,11 @@
 @extends('admin.layouts.app', [
-'activePage' => 'bidang',
+'activePage' => 'rab',
 ])
 @section('content')
 <div class="page-breadcrumb">
    <div class="row">
       <div class="col-5 align-self-center">
-         <h4 class="page-title">Data Bidang</h4>
+         <h4 class="page-title">Data Rab</h4>
          <div class="d-flex align-items-center">
          </div>
       </div>
@@ -16,10 +16,10 @@
                   <li class="breadcrumb-item">
                      Data Master
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/bidang">List Data Bidang</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/rab">List Data Rab</a></li>
                </ol>
             </nav>
-         </div>
+         </div>   
       </div>
    </div>
 </div>
@@ -29,9 +29,9 @@
          <div class="card">
             <div class="card-body">
                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="card-title m-0"><i class="fa fa-list"></i> List Data Bidang</h4>
+                  <h4 class="card-title m-0"><i class="fa fa-list"></i> List Data Rab</h4>
                   <div>
-                     <a href="/admin/bidang/add" class="btn btn-primary btn-sm">
+                     <a href="/admin/rab/add" class="btn btn-primary btn-sm">
                      <i class="fa fa-plus"></i> Tambah Data
                      </a>
                      <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#import">
@@ -57,15 +57,17 @@
                      <thead class="bg-primary" style="color: white;">
                         <tr>
                            <th width="3%" class="text-center">No</th>
-                           <th width="15%" class="text-center">Nama Bidang</th>
-                           <th width="15%" class="text-center">Action</th>
+                           <th width="15%" class="text-center">Nama Uraina</th>
+                           <th width="15%" class="text-center">Kode Induk</th>
+                           <th width="15%" class="text-center">Kode Uraian</th>
+                           
                         </tr>
                      </thead>
                      <tbody>
                         <?php $no = 1; ?>
-                        @foreach($bidang as $data)
+                        @foreach($rab as $data)
                         <?php
-                           $jabatan= DB::table('bidang')->find($data->id_jabatan);
+                           $jabatan= DB::table('rab')->find($data->id_jabatan);
                            ?>
                         <tr>
                            <td class="text-center align-middle-custom">{{ $no++ }}</td>
@@ -76,7 +78,7 @@
                            <td class="align-middle-custom">{{ $data->nama }}</td>
                            
                            <td class="text-center align-middle-custom" width="15%">
-                              <a href="/admin/bidang/edit/{{$data->id}}">
+                              <a href="/admin/rab/edit/{{$data->id}}">
                               <button class="btn btn-success btn-xs">
                               <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Data"></i>
                               </button>
@@ -103,7 +105,7 @@
             Import Data
             <h2>
             <hr>
-            <form method="post" action="/admin/bidang/import" enctype="multipart/form-data">
+            <form method="post" action="/admin/rab/import" enctype="multipart/form-data">
                {{ csrf_field() }}
                <div class="form-group" style="font-size: 17px;">
                   <label>Pilih File Excel</label>
@@ -111,7 +113,7 @@
                </div>
                <div class="row mt-1">
                   <div class="col-md-6">
-                     <a href="{{url('template/Template bidang.xlsx')}}">
+                     <a href="{{url('template/Template rab.xlsx')}}">
                      <button type="button" class="btn btn-dark btn-block"> <span class="fa fa-download"></span> Download Template</button>
                      </a>
                   </div>
@@ -124,7 +126,7 @@
       </div>
    </div>
 </div>
-@foreach($bidang as $data)
+@foreach($rab as $data)
 <div class="modal fade" id="data-{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -134,12 +136,12 @@
             <h2>
             <hr>
             <div class="form-group" style="font-size: 17px;">
-               <label>Nama bidang</label>
+               <label>Nama rab</label>
                <input type="text" class="form-control" readonly value="{{$data->nama}}" style="background-color: white;">  
             </div>
             <div class="row mt-1">
                <div class="col-md-6">
-                  <a href="/admin/bidang/delete/{{$data->id}}" style="text-decoration: none;">
+                  <a href="/admin/rab/delete/{{$data->id}}" style="text-decoration: none;">
                   <button type="button" class="btn btn-primary btn-block">Ya</button>
                   </a>
                </div>
