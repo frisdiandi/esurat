@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
-class RabController extends Controller
+class PermintaanController extends Controller
 {
     public function __construct()
     {
@@ -15,12 +15,12 @@ class RabController extends Controller
     }
    
     public function read(){
-        $rab = DB::table('rab')->orderBy('id','DESC')->get();
-        return view('admin.rab.index',['rab'=>$rab]);
+        $permintaan = DB::table('permintaan')->orderBy('id','DESC')->get();
+        return view('admin.permintaan.index',['permintaan'=>$permintaan]);
     }
   // Menampilkan form tambah ruangan
   public function add(){
-    return view('admin.rab.tambah');
+    return view('admin.permintaan.tambah');
 }
 
 

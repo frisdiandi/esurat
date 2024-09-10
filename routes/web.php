@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\BidangController;
 use App\Http\Controllers\Admin\RuanganController;
 use App\Http\Controllers\Admin\RabController;
+use App\Http\Controllers\Admin\PermintaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,18 @@ Route::prefix('admin/ruangan')->middleware('cekLevel:1 2')->controller(RuanganCo
 
 // Data RAB
 Route::prefix('admin/rab')->middleware('cekLevel:1 2')->controller(RabController::class)->group(function () {
+    Route::get('/','read');
+    Route::get('/add', 'add');
+    Route::post('/create', 'create');
+    Route::get('/edit/{id}', 'edit');
+    Route::post('/update/{id}', 'update');
+    Route::get('/delete/{id}', 'delete');
+    Route::post('/import', 'import');
+
+}); 
+
+// Data Permintaan
+Route::prefix('admin/permintaan')->middleware('cekLevel:1 2')->controller(PermintaanController::class)->group(function () {
     Route::get('/','read');
     Route::get('/add', 'add');
     Route::post('/create', 'create');
