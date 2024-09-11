@@ -23,5 +23,15 @@ class RabController extends Controller
     return view('admin.rab.tambah');
 }
 
+//menambahkan data
+public function create(Request $request) {
+    // Insert data ke tabel 'bidang' dengan id_pegawai dari user yang sedang login
+    DB::table('rab')->insert([  
+        'nama' => $request->nama,
+        'id_pegawai' => Auth::user()->id,  // Menggunakan ID pengguna yang sedang login
+    ]);
+
+    return redirect('/admin/bidang')->with("success", "Data Berhasil Ditambah!");
+}
 
 }

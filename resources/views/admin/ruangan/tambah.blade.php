@@ -55,9 +55,28 @@
                   <div class="row">
                      <div class="col-md-12">
                         <div class="form-group">
-                           <label>Nama ruangan</label>
+                           <label>Nama Ruangan</label>
                            <input type="text" name="nama" autofocus class="form-control" placeholder="Masukkan Nama ruangan .....">     
                         </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label>Nama Bidang</label>
+                           <select name="id_bidang" class="from-control select2">
+                              <option value="">-- pilih bidang --</option>
+                              @foreach($bidang as $data)
+                              <option value="{{$data->id}}">{{$data->nama}}</option>
+                              @endforeach
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                     <select name="id_pegawai" class="from-control select2">
+                              <option value="">-- pilih pegaiwai --</option>
+                              @foreach($pegawai as $data)
+                              <option value="{{$data->id}}">{{$data->nama}}</option>
+                              @endforeach
+                           </select>
                      </div>
                   </div>
                   <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="fa fa-save"></span> Tambah Data</button>

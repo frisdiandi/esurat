@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Http\Controllers\Controller;
 
 return new class extends Migration
 {
@@ -15,9 +16,11 @@ return new class extends Migration
     {
         Schema::create('permintaan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_uraian');
-            $table->string('kode_induk');
-            $table->string('kode_uraian');
+            $table->string('tanggal');
+            $table->string('perihal');
+            $table->string('isi_surat');
+            $table->string('id_user');
+            $table->string('lapiran');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });

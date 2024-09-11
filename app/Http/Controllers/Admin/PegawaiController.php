@@ -26,37 +26,55 @@ class PegawaiController extends Controller
         return view('admin.pegawai.tambah',['jabatan'=>$jabatan]);
     }
 
-    public function create(Request $request){
+    public function create(Request $request) {
+        // Validate the incoming request data
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'nip' => 'required|string|max:255',
+            'id_jabatan' => 'required|integer',
+            'foto' => 'nullable|image|max:2048' // Optional, but if provided, must be an image
+        ]);
+    
+        // Insert into 'users' table
         DB::table('users')->insert([
-            'name'=>$request->nama,
-            'username'=>$request->nip,
-            'level'=>'2',
-            'password'=> bcrypt('Admin2024')
-            ]); 
-             
-        $users= DB::table('users')->orderBy('id','DESC')->first();
-
+            'name' => $request->nama, // Make sure 'nama' is provided in the form
+            'username' => $request->nip,
+            'level' => '2',
+            'password' => bcrypt('Admin2024') // You can customize the password as needed
+        ]);
+    
+        // Get the last inserted user
+        $users = DB::table('users')->orderBy('id', 'DESC')->first();
+    
+        // Handle the 'foto' upload
         $dokumen = $request->file('foto');
-        if ($request->hasFile('foto')) {
-            $name = uniqid().".".$dokumen->getClientOriginalExtension();
-            $dokumen->move(public_path() . "/public/profil",$name);
-            
-            DB::table('pegawai')->insert([  
+        if ($dokumen) {
+            // If the file exists, process and move the file
+            $name = uniqid() . "." . $dokumen->getClientOriginalExtension();
+            $dokumen->move(public_path("/public/profil"), $name);
+    
+            // Insert into 'pegawai' table with 'foto'
+            DB::table('pegawai')->insert([
                 'nama' => $request->nama,
                 'nip' => $request->nip,
                 'id_jabatan' => $request->id_jabatan,
-                'id_user' => $users->id, 
-                'foto' => $name]);
+                'id_user' => $users->id,
+                'foto' => $name
+            ]);
         } else {
-            DB::table('pegawai')->insert([  
+            // Insert into 'pegawai' table without 'foto'
+            DB::table('pegawai')->insert([
                 'nama' => $request->nama,
                 'nip' => $request->nip,
                 'id_jabatan' => $request->id_jabatan,
-                'id_user' => $users->id]);
-        }   
-
-        return redirect('/admin/pegawai')->with("success","Data Berhasil Ditambah !");
+                'id_user' => $users->id
+            ]);
+        }
+    
+        // Redirect with a success message
+        return redirect('/admin/pegawai')->with('success', 'Data Berhasil Ditambah!');
     }
+    
 
     public function edit($id){
         $pegawai= DB::table('pegawai')->where('id',$id)->first();
@@ -72,25 +90,25 @@ class PegawaiController extends Controller
 
     public function update(Request $request, $id) {
         $pegawai = DB::table('pegawai')->find($id);
-
+    
         DB::table('users')
             ->where('id', $pegawai->id_user)
             ->update([
-            'name'=>$request->nama,
-            'username'=>$request->nip,
+                'name' => $request->nama,
+                'username' => $request->nip,
             ]); 
-
+    
         if ($request->hasFile('foto')) {
             // Hapus file lama jika ada
             if ($pegawai->foto != "") {
                 unlink(public_path('public/profil/' . $pegawai->foto));
             }
-
+    
             // Simpan file baru
             $foto = $request->file('foto');
-            $name = uniqid().".".$dokumen->getClientOriginalExtension();
+            $name = uniqid().".".$foto->getClientOriginalExtension(); // Use $foto here
             $foto->move(public_path('public/profil'), $name);
-
+    
             // Update data pegawai dengan foto baru
             DB::table('pegawai')
                 ->where('id', $id)
@@ -110,9 +128,10 @@ class PegawaiController extends Controller
                     'id_jabatan' => $request->id_jabatan
                 ]);
         }
+    
         return redirect('/admin/pegawai')->with('success', 'Data Berhasil Diupdate !');
     }
-
+    
 
     public function delete($id)
     {
