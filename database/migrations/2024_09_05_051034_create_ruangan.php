@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
+        Schema::create('ruangan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
+            $table->string('id_bidang');
+            $table->string('id_pegawai');
+            $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::dropIfExists('ruangan');
     }
 };
