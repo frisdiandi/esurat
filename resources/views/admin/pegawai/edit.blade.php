@@ -110,7 +110,7 @@
                         </div>
                      </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="fa fa-save"></span> Update Data</button>
+                  <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="fa fa-save"></span> Tambah Data</button>
                </form>
             </div>
          </div>
