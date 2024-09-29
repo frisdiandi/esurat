@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('permintaan', function (Blueprint $table) {
             $table->id();
-            $table->string('id_jabatan');
+            $table->string('tanggal');
+            $table->string('perihal');
+            $table->string('isi_surat');
             $table->string('id_user');
-            $table->string('nip');
-            $table->string('nama');
-            $table->string('status_aktif')->default('Aktif');
-            $table->string('foto')->nullable();
+            $table->string('lapiran');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('permintaan');
     }
 };

@@ -200,80 +200,92 @@
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav mt-3">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/home" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Dashboards </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="icon-Receipt-4"></i>
-                                <span class="hide-menu">Data Master </span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item">
-                                    <a href="/admin/jabatan" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu @if ($activePage == 'jabatan') text-info @endif"> Data Jabatan </span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="/admin/bidang" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu @if ($activePage == 'bidang') text-info @endif"> Data Bidang</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="/admin/ruangan" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu @if ($activePage == 'ruangan') text-info @endif"> Data Ruangan </span>
-                                    </a>
-                                </li>
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav mt-3">
+            <ul id="sidebarnav">
 
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/pegawai" aria-expanded="false">
-                                <i class="ti-user"></i>
-                                <span class="hide-menu">Pegawai</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/rab" aria-expanded="false">
-                                <i class="ti-agenda"></i>
-                                <span class="hide-menu">RAB</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/permintaan" aria-expanded="false">
-                                <i class="icon-Receipt"></i>
-                                <span class="hide-menu">TS Permintaan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/anggaran" aria-expanded="false">
-                                <i class="icon-Receipt-2"></i>
-                                <span class="hide-menu">TS Anggaran</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/belanja" aria-expanded="false">
-                                <i class="icon-Receipt-3"></i>
-                                <span class="hide-menu">TS Belanja</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+                    <!-- Admin Sidebar -->
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/home" aria-expanded="false">
+                            <i class="icon-Car-Wheel"></i>
+                            <span class="hide-menu">Dashboards</span>
+                        </a>
+                    </li>
+                    @if(Auth::user()->level == 1)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="icon-Receipt-4"></i>
+                            <span class="hide-menu">Data Master</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                            <li class="sidebar-item">
+                                <a href="/admin/jabatan" class="sidebar-link">
+                                    <i class="icon-Record"></i>
+                                    <span class="hide-menu @if ($activePage == 'jabatan') text-info @endif"> Data Jabatan</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="/admin/bidang" class="sidebar-link">
+                                    <i class="icon-Record"></i>
+                                    <span class="hide-menu @if ($activePage == 'bidang') text-info @endif"> Data Bidang</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="/admin/ruangan" class="sidebar-link">
+                                    <i class="icon-Record"></i>
+                                    <span class="hide-menu @if ($activePage == 'ruangan') text-info @endif"> Data Ruangan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/pegawai" aria-expanded="false">
+                            <i class="ti-user"></i>
+                            <span class="hide-menu">Pegawai</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/rab" aria-expanded="false">
+                            <i class="ti-agenda"></i>
+                            <span class="hide-menu">RAB</span>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Shared by Admin & User -->
+                @if(Auth::user()->level == 1 || Auth::user()->level == 2)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/permintaan" aria-expanded="false">
+                            <i class="icon-Receipt"></i>
+                            <span class="hide-menu">TS Permintaan</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/anggaran" aria-expanded="false">
+                            <i class="icon-Receipt-2"></i>
+                            <span class="hide-menu">TS Anggaran</span>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- User-Only Sidebar -->
+                @if(Auth::user()->level == 1)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/belanja" aria-expanded="false">
+                            <i class="icon-Receipt-3"></i>
+                            <span class="hide-menu">TS Belanja</span>
+                        </a>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->

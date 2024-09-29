@@ -23,10 +23,12 @@ class JabatanController extends Controller
         return view('admin.jabatan.index',['jabatan'=>$jabatan]);
     }
 
+    // menampilkan data terbaru
     public function add(){
         return view('admin.jabatan.tambah');
     }
 
+    // menambah data
     public function create(Request $request){
         DB::table('jabatan')->insert([  
             'nama' => $request->nama]);
@@ -34,16 +36,19 @@ class JabatanController extends Controller
         return redirect('/admin/jabatan')->with("success","Data Berhasil Ditambah !");
     }
 
+    //mengedit data
     public function edit($id){
         $jabatan= DB::table('jabatan')->where('id',$id)->first();
         return view('admin.jabatan.edit',['jabatan'=>$jabatan]);
     }
 
+    //delate data
     public function detail($id){
         $jabatan= DB::table('jabatan')->where('id',$id)->first();
         return view('admin.jabatan.detail',['jabatan'=>$jabatan]);
     }
 
+    //update data
     public function update(Request $request, $id) {
         DB::table('jabatan')  
             ->where('id', $id)
