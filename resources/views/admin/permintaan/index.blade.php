@@ -52,12 +52,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>ID</th> <!-- Ubah kolom sesuai urutan yang benar -->
                                     <th>Tanggal</th>
                                     <th>Perihal</th>
                                     <th>Isi Surat</th>
                                     <th>ID User</th>
                                     <th>Lampiran</th>
-                                    <th>Keterangan</th>
+                                    <th>Keterangan</th> <!-- Kolom keterangan sudah ada di database -->
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -70,8 +71,8 @@
                                     <td>{{ $item->perihal }}</td>
                                     <td>{{ $item->isi_surat }}</td>
                                     <td>{{ $item->id_user }}</td>
-                                    <td>{{ $item->lampiran }}</td>
-                                    <td>{{ $item->keterangan }}</td> <!-- Kolom keterangan -->
+                                    <td><a href="{{ asset('storage/' . $item->lampiran) }}" target="_blank">Lihat Lampiran</a></td>
+                                    <td>{{ $item->keterangan ?? '-' }}</td> <!-- Tampilkan '-' jika keterangan kosong -->
                                     <td>
                                         <a href="/admin/permintaan/edit/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
                                         <form action="/admin/permintaan/delete/{{ $item->id }}" method="POST" style="display:inline;">

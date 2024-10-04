@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BidangController;
 use App\Http\Controllers\Admin\RuanganController;
 use App\Http\Controllers\Admin\RabContoller;
 use App\Http\Controllers\Admin\PermintaanController;
+use App\Http\Controllers\Admin\AnggaranContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,7 +96,17 @@ Route::prefix('admin/rab')->middleware('cekLevel:1 2')->controller(RabContoller:
 
 
 //Data permintaan
-Route::prefix('admin/permintaan')->middleware('cekLevel:1 2')->controller(PermintaanController::class)->group(function () {
+Route::prefix('admin/permintaan')->middleware('cekLevel: 2')->controller(PermintaanController::class)->group(function () {
+    Route::get('/', 'read');
+    Route::get('/add', 'add');
+    Route::post('/create', 'create');
+    Route::get('/edit/{id}', 'edit');
+    Route::put('/update/{id}', 'update');
+    Route::delete('/delete/{id}', 'delete');
+});
+
+//Data anggaran
+Route::prefix('admin/anggaran')->middleware('cekLevel: 2')->controller(AnggaranContoller::class)->group(function () {
     Route::get('/', 'read');
     Route::get('/add', 'add');
     Route::post('/create', 'create');

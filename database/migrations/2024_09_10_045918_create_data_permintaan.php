@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('perihal');
             $table->string('isi_surat');
             $table->string('id_user');
-            $table->string('lapiran');
+            $table->string('lampiran');
+            $table->string('keterangan')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });

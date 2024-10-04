@@ -11,7 +11,7 @@
                     </a>
                 </div>
         </div>
-    <form action="/admin/permintaan/create" method="POST">
+    <form action="/admin/permintaan/create" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="nama_uraian">Tanggal</label>

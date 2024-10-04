@@ -34,15 +34,7 @@
                      <a href="/admin/jabatan/add" class="btn btn-primary btn-sm">
                       <i class="fa fa-plus"></i> Tambah Data
                      </a>
-                     <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#import">
-                      <i class="fa fa-upload"></i> Import Data
-                     </button>
-                     <a href="/admin/jabatan/export" target="_blank" class="btn btn-info btn-sm">
-                      <i class="fa fa-download"></i> Export Data
-                     </a>
-                     <a href="/admin/jabatan/cetak" target="_blank" class="btn btn-success btn-sm">
-                      <i class="fa fa-print"></i> Cetak Data
-                     </a>
+                     
                   </div>
                </div>
                <hr>

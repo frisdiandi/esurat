@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 
 class PermintaanController extends Controller
@@ -14,13 +15,15 @@ class PermintaanController extends Controller
     }
    
     // Menampilkan data permintaan
-    public function read(){
-        $permintaan = DB::table('permintaan')->orderBy('id','DESC')->get();
-        return view('admin.permintaan.index',['permintaan' => $permintaan]);
+    public function read()
+    {
+        $permintaan = DB::table('permintaan')->orderBy('id', 'DESC')->get();
+        return view('admin.permintaan.index', ['permintaan' => $permintaan]);
     }
 
     // Menampilkan form tambah permintaan
-    public function add(){
+    public function add()
+    {
         return view('admin.permintaan.tambah');
     }
     
@@ -36,30 +39,38 @@ class PermintaanController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        // Simpan data ke database
-        $permintaan = new Permintaan();
-        $permintaan->tanggal = $request->tanggal;
-        $permintaan->perihal = $request->perihal;
-        $permintaan->isi_surat = $request->isi_surat;
-        $permintaan->id_user = auth()->user()->id; // Menyimpan ID user yang membuat permintaan
-
-        // Jika ada lampiran, simpan file ke folder dan simpan path-nya
+        // Simpan lampiran jika ada
+        $lampiranPath = null;
         if ($request->hasFile('lampiran')) {
             $lampiranPath = $request->file('lampiran')->store('lampiran', 'public');
-            $permintaan->lampiran = $lampiranPath;
         }
 
-        $permintaan->keterangan = $request->keterangan;
-        $permintaan->save();
+        // Simpan data ke database menggunakan query builder
+        DB::table('permintaan')->insert([
+            'tanggal' => $request->tanggal,
+            'perihal' => $request->perihal,
+            'isi_surat' => $request->isi_surat,
+            'lampiran' => $lampiranPath, // Kolom lampiran
+            'keterangan' => $request->keterangan,
+            'id_user' => auth()->user()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         // Redirect dengan pesan sukses
         return redirect('/admin/permintaan')->with('success', 'Data permintaan berhasil ditambahkan');
     }
 
-    // Method untuk mengedit data permintaan
+    // Method untuk menampilkan form edit
     public function edit($id)
     {
-        $permintaan = Permintaan::findOrFail($id);
+        // Ambil data berdasarkan ID
+        $permintaan = DB::table('permintaan')->where('id', $id)->first();
+
+        // Cek jika data ada, jika tidak kembalikan 404
+        if (!$permintaan) {
+            abort(404);
+        }
 
         return view('admin.permintaan.edit', compact('permintaan'));
     }
@@ -76,19 +87,36 @@ class PermintaanController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $permintaan = Permintaan::findOrFail($id);
-        $permintaan->tanggal = $request->tanggal;
-        $permintaan->perihal = $request->perihal;
-        $permintaan->isi_surat = $request->isi_surat;
+        // Ambil data yang akan diupdate
+        $permintaan = DB::table('permintaan')->where('id', $id)->first();
 
-        // Jika ada lampiran baru, update file
-        if ($request->hasFile('lampiran')) {
-            $lampiranPath = $request->file('lampiran')->store('lampiran', 'public');
-            $permintaan->lampiran = $lampiranPath;
+        // Cek jika data ada, jika tidak kembalikan 404
+        if (!$permintaan) {
+            abort(404);
         }
 
-        $permintaan->keterangan = $request->keterangan;
-        $permintaan->save();
+        // Simpan lampiran baru jika ada
+        $lampiranPath = $permintaan->lampiran; // Jika tidak ada lampiran baru, gunakan yang lama
+        if ($request->hasFile('lampiran')) {
+            // Hapus file lampiran lama jika ada file baru
+            if ($lampiranPath) {
+                Storage::delete('public/' . $lampiranPath);
+            }
+            // Simpan lampiran baru
+            $lampiranPath = $request->file('lampiran')->store('lampiran', 'public');
+        }
+
+        // Update data di database
+        DB::table('permintaan')
+            ->where('id', $id)
+            ->update([
+                'tanggal' => $request->tanggal,
+                'perihal' => $request->perihal,
+                'isi_surat' => $request->isi_surat,
+                'lampiran' => $lampiranPath,
+                'keterangan' => $request->keterangan,
+                'updated_at' => now(),
+            ]);
 
         // Redirect dengan pesan sukses
         return redirect('/admin/permintaan')->with('success', 'Data permintaan berhasil diupdate');
@@ -97,8 +125,21 @@ class PermintaanController extends Controller
     // Method untuk menghapus data permintaan
     public function destroy($id)
     {
-        $permintaan = Permintaan::findOrFail($id);
-        $permintaan->delete();
+        // Ambil data yang akan dihapus
+        $permintaan = DB::table('permintaan')->where('id', $id)->first();
+
+        // Cek jika data ada, jika tidak kembalikan 404
+        if (!$permintaan) {
+            abort(404);
+        }
+
+        // Hapus file lampiran jika ada
+        if ($permintaan->lampiran) {
+            Storage::delete('public/' . $permintaan->lampiran);
+        }
+
+        // Hapus data dari database
+        DB::table('permintaan')->where('id', $id)->delete();
 
         // Redirect dengan pesan sukses
         return redirect('/admin/permintaan')->with('success', 'Data permintaan berhasil dihapus');

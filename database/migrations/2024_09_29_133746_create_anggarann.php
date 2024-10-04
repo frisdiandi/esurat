@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('anggaran', function (Blueprint $table) {
+        Schema::create('anggarann', function (Blueprint $table) {
             $table->id();
             $table->string('no_surat');  // Mengubah method ke string untuk kolom 'no_surat'
             $table->date('tanggal');  // Menggunakan date untuk tanggal
@@ -30,7 +30,9 @@ return new class extends Migration
             $table->string('status')->nullable();  // Menggunakan string untuk status
             $table->text('keterangan')->nullable();  // Menggunakan text untuk keterangan
             $table->date('alarm')->nullable();  // Menggunakan date untuk alarm
-            $table->timestamps();  
+            $table->string('lampiran')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });
     }
 
@@ -41,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggaran');
+        Schema::dropIfExists('anggarann');
     }
 };
