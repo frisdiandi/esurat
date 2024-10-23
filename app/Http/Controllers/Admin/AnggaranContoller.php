@@ -81,9 +81,14 @@ class AnggaranContoller extends Controller
         return redirect('/admin/anggaran')->with('success', 'Data Berhasil Ditambah!');
     }
 
-    // Menampilkan form edit anggaran
+    // Menampilkan form edit anggaran, hanya untuk level admin (level 1)
     public function edit($id)
     {
+        // Cek apakah pengguna adalah admin (level 1)
+        // if (Auth::user()->role !== '') {
+        //     return redirect('/')->with('error', 'Akses Ditolak: Anda tidak memiliki izin untuk melihat halaman ini.');
+        // }
+
         $anggaran = DB::table('anggarann')->where('id', $id)->first();
         if (!$anggaran) {
             abort(404);
@@ -91,14 +96,18 @@ class AnggaranContoller extends Controller
         return view('admin.anggaran.edit', compact('anggaran'));
     }
 
-    // Mengupdate data anggaran
+    // Mengupdate data anggaran, hanya untuk level admin (level 1)
     public function update(Request $request, $id)
     {
+        // Cek apakah pengguna adalah admin (level 1)
+        // if (Auth::user()->role !== 'admin') {
+        //     return redirect('/')->with('error', 'Akses Ditolak: Anda tidak memiliki izin untuk melakukan tindakan ini.');
+        // }
+
         $request->validate([
             'no_surat' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'perihal' => 'required|string|max:255',
-            // Validasi tambahan untuk kolom lainnya jika perlu
         ]);
 
         // Set default status if not provided

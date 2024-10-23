@@ -87,6 +87,7 @@ class PermintaanController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
+
         // Ambil data yang akan diupdate
         $permintaan = DB::table('permintaan')->where('id', $id)->first();
 
@@ -121,6 +122,7 @@ class PermintaanController extends Controller
         // Redirect dengan pesan sukses
         return redirect('/admin/permintaan')->with('success', 'Data permintaan berhasil diupdate');
     }
+
 
     // Method untuk menghapus data permintaan
     public function destroy($id)

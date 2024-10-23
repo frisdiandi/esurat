@@ -96,7 +96,7 @@ Route::prefix('admin/rab')->middleware('cekLevel:1 2')->controller(RabContoller:
 
 
 //Data permintaan
-Route::prefix('admin/permintaan')->middleware('cekLevel: 2')->controller(PermintaanController::class)->group(function () {
+Route::prefix('admin/permintaan')->middleware('cekLevel: 1 2')->controller(PermintaanController::class)->group(function () {
     Route::get('/', 'read');
     Route::get('/add', 'add');
     Route::post('/create', 'create');
@@ -106,7 +106,7 @@ Route::prefix('admin/permintaan')->middleware('cekLevel: 2')->controller(Permint
 });
 
 //Data anggaran
-Route::prefix('admin/anggaran')->middleware('cekLevel: 2')->controller(AnggaranContoller::class)->group(function () {
+Route::prefix('admin/anggaran')->middleware('cekLevel: 1 2')->controller(AnggaranContoller::class)->group(function () {
     Route::get('/', 'read');
     Route::get('/add', 'add');
     Route::post('/create', 'create');
