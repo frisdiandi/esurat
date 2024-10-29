@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('status')->nullable();  // Menggunakan string untuk status
             $table->text('keterangan')->nullable();  // Menggunakan text untuk keterangan
             $table->date('alarm')->nullable();  // Menggunakan date untuk alarm
-            $table->timestamps();  
+            $table->timestamps();  // Tambahkan created_at dan updated_at otomatis
         });
     }
 
