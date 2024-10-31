@@ -34,16 +34,11 @@
                      <a href="/admin/jabatan/add" class="btn btn-primary btn-sm">
                       <i class="fa fa-plus"></i> Tambah Data
                      </a>
-                     <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#import">
-                      <i class="fa fa-upload"></i> Import Data
-                     </button>
-                     <a href="/admin/jabatan/export" target="_blank" class="btn btn-info btn-sm">
-                      <i class="fa fa-download"></i> Export Data
-                     </a>
-                     <a href="/admin/jabatan/cetak" target="_blank" class="btn btn-success btn-sm">
-                      <i class="fa fa-print"></i> Cetak Data
+                     <a href="/admin/jabatan/cetak" class="btn btn-primary btn-sm">
+                        <i class="fa fa-print"></i> Cetak Data
                      </a>
                   </div>
+                  
                </div>
                <hr>
                @if (session('error'))
@@ -74,23 +69,24 @@
                            <td class="text-center" width="3%">{{ $no++ }}</td>
                            <td>{{ $data->nama }}</td>
                            <td class="text-center" width="15%">
-                              <a href="/admin/jabatan/detail/{{$data->id}}">
-                                 <button class="btn btn-info btn-xs">
-                                    <i class="mdi mdi-account-card-details" data-toggle="tooltip" data-placement="top" title="Detail Data"></i>
+                                 <a href="/admin/jabatan/detail/{{$data->id}}">
+                                    <button class="btn btn-info btn-xs">
+                                       <i class="mdi mdi-account-card-details" data-toggle="tooltip" data-placement="top" title="Detail Data"></i>
+                                    </button>
+                                 </a>
+                                 <a href="/admin/jabatan/edit/{{$data->id}}">
+                                    <button class="btn btn-success btn-xs">
+                                       <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Data"></i>
+                                    </button>
+                                 </a>
+                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#data-{{ $data->id }}">
+                                    <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Hapus Data"></i>
                                  </button>
-                              </a>
-                              <a href="/admin/jabatan/edit/{{$data->id}}">
-                                 <button class="btn btn-success btn-xs">
-                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Data"></i>
-                                 </button>
-                              </a>
-                              <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#data-{{ $data->id }}">
-                                 <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Data"></i>
-                              </button>
                            </td>
                         </tr>
                         @endforeach
                      </tbody>
+
                   </table>
                </div>
             </div>

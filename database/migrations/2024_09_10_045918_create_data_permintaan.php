@@ -17,9 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('tanggal');
             $table->string('perihal');
-            $table->string('isi_surat');
+            $table->string('Persoalan');
+            $table->string('Perangapan');
+            $table->string('Fakta');
+            $table->string('Analisis');
+            $table->string('Kesimpulan');
+            $table->string('Saran');
             $table->string('id_user');
-            $table->string('lapiran');
+            $table->string('keterangan')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });
