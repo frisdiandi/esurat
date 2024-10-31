@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('Kesimpulan');
             $table->string('Saran');
             $table->string('id_user');
+<<<<<<< HEAD
+=======
+            $table->string('lampiran');
+>>>>>>> 22eb47e17e05ff7b632cc7bed80c0cd90f15a72c
             $table->string('keterangan')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();

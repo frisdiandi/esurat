@@ -27,6 +27,11 @@
 </head>
 <body>
     <div class="container">
+<<<<<<< HEAD
+=======
+        
+        <!-- Kepala Surat -->
+>>>>>>> 22eb47e17e05ff7b632cc7bed80c0cd90f15a72c
         <div class="header">
             <h2>Kementerian Sistem Informasi Pengaduan</h2>
             <p>Jl. Mawar No. 123, Jakarta, Indonesia</p>
@@ -34,6 +39,11 @@
             <hr>
             <button onclick="window.print();" class="btn btn-primary btn-print">Print</button>
         </div>
+<<<<<<< HEAD
+=======
+
+        <!-- Alamat Surat -->
+>>>>>>> 22eb47e17e05ff7b632cc7bed80c0cd90f15a72c
         <div class="date">
             <p>{{ now()->format('d F Y') }}</p>
         </div>
@@ -43,6 +53,7 @@
             <p>Alamat Penerima</p>
             <p>Kota, Indonesia</p>
         </div>
+<<<<<<< HEAD
         <p>Dengan hormat,</p>
         <div class="letter-body">
             <div class="field">
@@ -70,10 +81,51 @@
             </div>
         </div>
         <p>Demikian surat ini kami sampaikan. Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.</p>
+=======
+        
+        <!-- Salam Pembuka -->
+        <p>Dengan hormat,</p>
+
+        <!-- Isi Surat -->
+        <div class="letter-body">
+            <div class="field">
+                <strong>Persoalan:</strong> {{ $permintaan->perihal }}
+            </div>
+            <div class="field">
+                <strong>Peranggapan:</strong>
+                <p class="content">{{ $permintaan->isi_surat }}</p>
+            </div>
+            <div class="field">
+                <strong>Fakta-Fakta Yang Mempengaruhi:</strong>
+                <p class="content">{{ $permintaan->keterangan ?? 'Tidak ada keterangan' }}</p>
+            </div>
+            <div class="field">
+                <strong>Analisis:</strong>
+                <p class="content">{{ $permintaan->keterangan ?? 'Tidak ada keterangan' }}</p>
+            </div>
+            <div class="field">
+                <strong>Kesimpulan:</strong>
+                <p class="content">{{ $permintaan->isi_surat }}</p>
+            </div>
+            <div class="field">
+                <strong>Saran:</strong>
+                <p class="content">{{ $permintaan->isi_surat }}</p>
+            </div>
+        </div>
+
+        <!-- Salam Penutup -->
+        <p>Demikian surat ini kami sampaikan. Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.</p>
+
+        <!-- Tanda Tangan -->
+>>>>>>> 22eb47e17e05ff7b632cc7bed80c0cd90f15a72c
         <div class="signature" style="text-align: right; margin-top: 30px;">
             <p>Hormat Kami,</p>
             <p><strong>Sistem Informasi Pengaduan</strong></p>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22eb47e17e05ff7b632cc7bed80c0cd90f15a72c
         <div class="footer">
             <p>&copy; 2024 Sistem Informasi Pengaduan</p>
         </div>
